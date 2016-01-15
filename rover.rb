@@ -1,6 +1,27 @@
 module Turn
   def turn
-    if @direction = "N" &&
+      if @direction = "N" && @instructions = "R"
+        @direction = "E"
+      elsif @direction = "N" && @instructions = "L"
+        @direction = "W"
+      elsif @direction = "S" && @instructions = "R"
+        @direction = "W"
+      elsif @direction = "S" && @instructions = "L"
+        @direction = "E"
+      elsif @direction = "E" && @instructions = "R"
+        @direction = "S"
+      elsif @direction = "E" && @instructions = "L"
+        @direction = "N"
+      elsif @direction = "W" && @instructions = "R"
+        @direction = "N"
+      elsif @direction = "W" && @instructions = "L"
+        @direction = "S"
+      else @direction = @direction
+    end
+  end
+end
+
+
 
     end
   end
@@ -25,7 +46,7 @@ module Move
 class Rover
 # attr_accessor :x_coordinate, :y_coordinate, :direction,
 
-  def initialize
+  def initialize#(x_coordinate, y_coordinate, direction)
     puts "Provide the size of the plateau with two numbers, separated by a space like this: '7 7'"
     @plateau_size = gets.chomp.split(" ")
     puts "     *****\nPlateau width is #{@plateau_size[0].to_s} units by #{@plateau_size[1].to_s} height units."
@@ -36,7 +57,7 @@ class Rover
     @coordinates = gets.chomp.split(" ")
     @x_coordinate = @coordinates[0] # to int?
     @y_coordinate = @coordinates[1] # to int?
-    @direction = gets.chomp.upcase
+    @direction = @coordinates[2].upcase
     puts "     *****\nThe rover is at coordinates #{@x_coordinate}, #{@y_coordinate} facing #{@direction}.\n     *****"
   end
 
