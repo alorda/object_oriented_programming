@@ -68,7 +68,7 @@ class Rover
 
     puts "Give #{@name} a series of instructions on where to move using 'L' for rotate left, 'R' for rotate right, and 'M' to move; you don't need to put spaces between these, so it can look like 'LMRMML'. Cool? direct #{@name}!:"
 
-    @instructions = gets.chomp.split("") # => gives you an array of ["L", "M"...]
+    @instructions = gets.chomp.upcase.split("") # => gives you an array of ["L", "M"...]
     # We need to take that array of instructions and
     # turn it into something meaningful
     # The robort has to turn first (if it's told to L or R) and then Move after it has turned.
