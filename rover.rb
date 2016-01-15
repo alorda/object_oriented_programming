@@ -1,41 +1,15 @@
-class Rover
-attr_accessor :x_coordinate, :y_coordinate, :heading,
-
-  def initialize
-    puts "Provide the size of the plateau with two numbers, separated by a space like this: '7 7'"
-    @plateau_size = gets.chomp.split(" ")
-    puts "Plateau width is #{@plateau_size[0].to_s} units by #{@plateau_size[1].to_s} height units."
-
-    puts "Provide the coordinates of the rover's location. It must be within the size of the plateau you provided.\n For example, enter '2, 5' with the coordinates separated by a comma and space."
-    @coordinates = gets.chomp.split(", ")
-    @x_coordinate = @coordinates[0] # to int?
-    @y_coordinate = @coordinates[1] # to int?
-    puts "The rover's x-coordinate is #{@x} with a y-coordinate of #{@y}.Thanks!\nTell me which direction the rover is facing using: \nn for North \ns for South \ne for East \nw for West."
-    @heading = gets.chomp.upcase
-    puts "The rover is facing #{@heading}."
-  end
-
-  def read_instruction
-    puts "Give me a series of instructions on where to move using 'L' for rotate left, 'R' for rotate right, and 'M' to move; you don't need to put spaces between these, so it can look like 'LMRMML'. Cool? direct me!:"
-    @instructions = gets.chomp.split("") # => gives you an array of ["L", "M"...]
-    # We need to take that array of instructions and
-    # turn it into something meaningful
-    # The robort has to turn first (if it's told to L or R) and then Move after it has turned.
-
-
-  end
-
-
+module Turn
   def turn
+    if @direction = "N" &&
 
-    case
-    when
-
+    end
   end
+end
 
-
+module Move
+# Determines new coordinate, for x or y, and updates it depending on direction of rover at time of move.
   def move
-    case @heading
+    case @direction
     when "N"
       y_coordinate =+ 1
     when "S"
@@ -48,8 +22,30 @@ attr_accessor :x_coordinate, :y_coordinate, :heading,
   end
 
 
+class Rover
+# attr_accessor :x_coordinate, :y_coordinate, :direction,
 
+  def initialize
+    puts "Provide the size of the plateau with two numbers, separated by a space like this: '7 7'"
+    @plateau_size = gets.chomp.split(" ")
+    puts "     *****\nPlateau width is #{@plateau_size[0].to_s} units by #{@plateau_size[1].to_s} height units."
+
+    puts "     *****"
+
+    puts "Provide the coordinates of the rover's location. It must be within the size of the plateau you provided.\nAlso tell me the direction the rover is facing with one letter for North, South, East, or West.\nType something like: 2 5 E"
+    @coordinates = gets.chomp.split(" ")
+    @x_coordinate = @coordinates[0] # to int?
+    @y_coordinate = @coordinates[1] # to int?
+    @direction = gets.chomp.upcase
+    puts "     *****\nThe rover is at coordinates #{@x_coordinate}, #{@y_coordinate} facing #{@direction}.\n     *****"
   end
+
+  def read_instruction
+    puts "Give me a series of instructions on where to move using 'L' for rotate left, 'R' for rotate right, and 'M' to move; you don't need to put spaces between these, so it can look like 'LMRMML'. Cool? direct me!:"
+    @instructions = gets.chomp.split("") # => gives you an array of ["L", "M"...]
+    # We need to take that array of instructions and
+    # turn it into something meaningful
+    # The robort has to turn first (if it's told to L or R) and then Move after it has turned.
 
 end
 
