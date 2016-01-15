@@ -27,7 +27,7 @@ module Move
   def move
     case @direction
     when "N"
-      @y_coordinate =+ 1
+      @y_coordinate += 1
     when "S"
       @y_coordinate -= 1
     when "E"
@@ -53,20 +53,20 @@ class Rover
 # Changing name of initialize method to read_instruction because we have attr_accessors which help us initialize the rovers.
   def read_instruction#(x_coordinate, y_coordinate, direction)
 
-    puts "Provide the size of the plateau with two numbers, separated by a space like this: '7 7'"
-    @plateau_size = gets.chomp.split(" ")
-    puts "     *****\nPlateau width is #{@plateau_size[0]} units by #{@plateau_size[1]} height units."
+    # puts "Provide the size of the plateau with two numbers, separated by a space like this: '7 7'"
+    # @plateau_size = gets.chomp.split(" ")
+    # puts "     *****\nPlateau width is #{@plateau_size[0]} units by #{@plateau_size[1]} height units."
 
     puts "     *****"
 
-    puts "Provide the coordinates of the rover's location. It must be within the size of the plateau you provided.\nAlso tell me the direction the rover is facing with one letter for North, South, East, or West.\nType something like: 2 5 E"
+    puts "Provide the coordinates of #{@name}'s location. It must be within the size of the plateau you provided.\nAlso tell me the direction #{@name} is facing with one letter for North, South, East, or West.\nType something like: 2 5 E"
     @coordinates = gets.chomp.split(" ")
     @x_coordinate = @coordinates[0].to_i # to int?
     @y_coordinate = @coordinates[1].to_i # to int?
     @direction = @coordinates[2].upcase
-    puts "     *****\nThe rover is at coordinates #{@x_coordinate}, #{@y_coordinate} facing #{@direction}.\n     *****"
+    puts "     *****\n #{@name} is at coordinates #{@x_coordinate}, #{@y_coordinate} facing #{@direction}.\n     *****"
 
-    puts "Give me a series of instructions on where to move using 'L' for rotate left, 'R' for rotate right, and 'M' to move; you don't need to put spaces between these, so it can look like 'LMRMML'. Cool? direct me!:"
+    puts "Give #{@name} a series of instructions on where to move using 'L' for rotate left, 'R' for rotate right, and 'M' to move; you don't need to put spaces between these, so it can look like 'LMRMML'. Cool? direct #{@name}!:"
 
     @instructions = gets.chomp.split("") # => gives you an array of ["L", "M"...]
     # We need to take that array of instructions and
@@ -83,13 +83,20 @@ class Rover
 
     end
 
-    # Give final coordinates and direction of the rover 
+    # Give final coordinates and direction of the rover
     puts "#{@name} is at new coordinates #{@x_coordinate}, #{@y_coordinate} facing #{@direction}."
 
   end
 end
 
 #Program Starts
+
+# Prompt user for plateau dimensions only once
+puts "Provide the size of the plateau with two numbers, separated by a space like this: '7 7'"
+@plateau_size = gets.chomp.split(" ")
+puts "     *****\nPlateau width is #{@plateau_size[0]} units by #{@plateau_size[1]} height units."
+
+# Now that we've prompted user for plateau dimensions, we can initialize each rover
 
 rover1 = Rover.new("rover_1")
 rover2 = Rover.new("rover_2")
