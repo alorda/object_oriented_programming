@@ -16,7 +16,7 @@ module Turn
         @direction = "N"
       elsif @direction = "W" && @instructions = "L"
         @direction = "S"
-      else @direction = @direction
+      # else @direction = @direction
     end
   end
 end
