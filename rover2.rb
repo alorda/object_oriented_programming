@@ -46,8 +46,12 @@ class Rover
 
   attr_accessor :x_coordinate, :y_coordinate, :direction, :name
 
+  def initialize(name)
+    @name = name
+  end
+
 # Changing name of initialize method to read_instruction because we have attr_accessors which help us initialize the rovers.
-  def read_instruction(x_coordinate, y_coordinate, direction)
+  def read_instruction#(x_coordinate, y_coordinate, direction)
 
     puts "Provide the size of the plateau with two numbers, separated by a space like this: '7 7'"
     @plateau_size = gets.chomp.split(" ")
@@ -57,8 +61,8 @@ class Rover
 
     puts "Provide the coordinates of the rover's location. It must be within the size of the plateau you provided.\nAlso tell me the direction the rover is facing with one letter for North, South, East, or West.\nType something like: 2 5 E"
     @coordinates = gets.chomp.split(" ")
-    @x_coordinate = @coordinates[0] # to int?
-    @y_coordinate = @coordinates[1] # to int?
+    @x_coordinate = @coordinates[0].to_i # to int?
+    @y_coordinate = @coordinates[1].to_i # to int?
     @direction = @coordinates[2].upcase
     puts "     *****\nThe rover is at coordinates #{@x_coordinate}, #{@y_coordinate} facing #{@direction}.\n     *****"
 
@@ -78,9 +82,18 @@ class Rover
         end
 
     end
+
+    # Give final coordinates and direction of the rover 
+    puts "#{@name} is at new coordinates #{@x_coordinate}, #{@y_coordinate} facing #{@direction}."
+
   end
 end
 
 #Program Starts
-rover1 = Rover.new
-rover1 = Rover.name
+
+rover1 = Rover.new("rover_1")
+rover2 = Rover.new("rover_2")
+
+
+rover1.read_instruction
+rover2.read_instruction
