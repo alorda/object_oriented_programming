@@ -1,22 +1,24 @@
+require 'pry'
+
 module Turn
   def turn(instruction)
-      if @direction = "N" && @instructions = "R"
+    binding.pry
+      if @direction == "N" &&  instruction == "R"
         @direction = "E"
-      elsif @direction = "N" && @instructions = "L"
+      elsif @direction == "N" && instruction == "L"
         @direction = "W"
-      elsif @direction = "S" && @instructions = "R"
+      elsif @direction == "S" && instruction == "R"
         @direction = "W"
-      elsif @direction = "S" && @instructions = "L"
+      elsif @direction == "S" && instruction == "L"
         @direction = "E"
-      elsif @direction = "E" && @instructions = "R"
+      elsif @direction == "E" && instruction == "R"
         @direction = "S"
-      elsif @direction = "E" && @instructions = "L"
+      elsif @direction == "E" && instruction == "L"
         @direction = "N"
-      elsif @direction = "W" && @instructions = "R"
+      elsif @direction == "W" && instruction == "R"
         @direction = "N"
-      elsif @direction = "W" && @instructions = "L"
+      elsif @direction == "W" && instruction == "L"
         @direction = "S"
-      # else @direction = @direction
     end
   end
 end
@@ -24,7 +26,7 @@ end
 
 module Move
 # Determines new coordinate, for x or y, and updates it depending on direction of rover at time of move.
-  def move
+  def move # What goes in here?
     case @direction
     when "N"
       @y_coordinate += 1
@@ -50,8 +52,9 @@ class Rover
     @name = name
   end
 
-# Changing name of initialize method to read_instruction because we have attr_accessors which help us initialize the rovers.
+  # Changing name of initialize method to read_instruction because we have attr_accessors which help us initialize the rovers.
   def read_instruction#(x_coordinate, y_coordinate, direction)
+    # Left 3 arguments out becase it not, program crashes as it expects 3 parameters right away to launch.
 
     # puts "Provide the size of the plateau with two numbers, separated by a space like this: '7 7'"
     # @plateau_size = gets.chomp.split(" ")
@@ -76,11 +79,9 @@ class Rover
     @instructions.each do |instruction|
         if instruction == "L" || instruction == "R"
           turn(instruction)
-        elsif
-          instruction == "M"
-          move
+        elsif instruction == "M"
+          move #What goes in here?
         end
-
     end
 
     # Give final coordinates and direction of the rover
